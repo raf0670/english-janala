@@ -3,6 +3,16 @@ const createElements = (arr) => {
     return htmlElements.join(" ");
 };
 
+const manageSpinner = (status) => {
+    if (status === true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("word-container").classList.add("hidden");
+    } else {
+        document.getElementById("spinner").classList.add("hidden");
+        document.getElementById("word-container").classList.remove("hidden");
+    }
+};
+
 const loadLessons = () => {
     fetch("https://openapi.programming-hero.com/api/levels/all").then(res => res.json()).then(json => displayLessons(json.data));
 };
@@ -15,6 +25,7 @@ const removeActive = () => {
 };
 
 const loadLevelWord = (id) => {
+    manageSpinner(true);
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url).then(res => res.json()).then(json => {
         const clickedBtn = document.getElementById(`lesson-btn-${id}`);
@@ -72,6 +83,7 @@ const displayLevelWord = (words) => {
             <h2 class="bangla text-4xl font-bold">নেক্সট Lesson এ যান</h2>
         </div>
         `;
+        manageSpinner(false);
         return;
     }
 
@@ -94,6 +106,7 @@ const displayLevelWord = (words) => {
         // appending in the container
         wordContainer.append(card);
     });
+    manageSpinner(false);
 };
 
 const displayLessons = (lessons) => {
@@ -118,3 +131,19 @@ const displayLessons = (lessons) => {
 };
 
 loadLessons();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+    removeActive();
+    const input = document.getElementById("input-search");
+    const inputValue = input.value.trim().toLowerCase();
+    // console.log(inputValue);
+    fetch("https://openapi.programming-hero.com/api/words/all").then(res => res.json()).then(data => {
+        const allWords = data.data;
+        // console.log(allWords);
+        const filterWords = allWords.filter((word) => {
+            return word.word.toLowerCase().includes(inputValue);
+        });
+        displayLevelWord(filterWords);
+        // console.log(filterWords);
+    });
+});
