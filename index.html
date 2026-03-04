@@ -83,8 +83,8 @@
                             <circle cx="12" cy="7" r="4"></circle>
                         </g>
                     </svg>
-                    <input type="text" required placeholder="Enter Your Name" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3"
-                        maxlength="30" title="Only letters, numbers or dash" />
+                    <input type="text" required placeholder="Enter Your Name" pattern="[A-Za-z][A-Za-z0-9\-]*"
+                        minlength="3" maxlength="30" title="Only letters, numbers or dash" />
                 </label>
 
                 <label class="input validator">
@@ -119,14 +119,31 @@
         </div>
     </section>
 
-    <section id="word-container" class="bg-gray-100 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 rounded-3xl">
-        
+    <section id="word-container"
+        class="bg-gray-100 p-10 w-11/12 mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 rounded-3xl">
+
         <div class="text-center mx-auto col-span-full py-10 space-y-3">
             <p class="bangla text-[#79716B]">আপনি এখনো কোন Lesson Select করেন নি</p>
             <h2 class="bangla text-4xl font-bold">একটি Lesson Select করুন।</h2>
         </div>
 
     </section>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="details-container" class="space-y-8">
+                
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
     <script src="./scripts/index.js"></script>
 </body>
