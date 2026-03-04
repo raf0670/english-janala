@@ -3,6 +3,12 @@ const createElements = (arr) => {
     return htmlElements.join(" ");
 };
 
+function pronounceWord(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-EN"; // English
+    window.speechSynthesis.speak(utterance);
+}
+
 const manageSpinner = (status) => {
     if (status === true) {
         document.getElementById("spinner").classList.remove("hidden");
@@ -73,7 +79,7 @@ const displayLevelWord = (words) => {
     // get the word container and empty
     const wordContainer = document.getElementById("word-container");
     wordContainer.innerHTML = "";
-    
+
     // empty words array condition
     if (words.length === 0) {
         wordContainer.innerHTML = `
@@ -98,7 +104,7 @@ const displayLevelWord = (words) => {
 
             <div class="flex justify-between items-center">
                 <button onclick="loadWordDetail(${word.id})" class="btn bg-[#1A91FF20] hover:bg-[#1A91FF]"><i class="fa-solid fa-circle-info"></i></button>
-                <button class="btn bg-[#1A91FF20] hover:bg-[#1A91FF]"><i class="fa-solid fa-volume-high"></i></button>
+                <button onclick="pronounceWord('${word.word}')" class="btn bg-[#1A91FF20] hover:bg-[#1A91FF]"><i class="fa-solid fa-volume-high"></i></button>
             </div>
         </div>
         `
@@ -132,6 +138,7 @@ const displayLessons = (lessons) => {
 
 loadLessons();
 
+// search function event
 document.getElementById("btn-search").addEventListener("click", () => {
     removeActive();
     const input = document.getElementById("input-search");
