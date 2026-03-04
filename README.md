@@ -48,3 +48,10 @@ Bash:
 cd english-janala
 
 Open index.html in your browser (or use the "Live Server" extension in VS Code).
+
+💡 Future Improvements
+Add a "Bookmark" feature to save difficult words to LocalStorage.
+
+Implement a "Quiz Mode" based on the lessons.
+
+Add a Dark Mode toggle for better accessibility.
